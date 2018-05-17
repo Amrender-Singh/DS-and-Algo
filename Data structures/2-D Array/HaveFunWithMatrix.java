@@ -42,7 +42,7 @@ class Reader{
     }
 }
 
- public class TheBlocksProblem {
+ public class HaveFunWithMatrix {
      public static void swapRow(int arr[][], int n, int a, int b){
         for(int i = 0; i < n; i++){
             int temp = arr[a][i];
