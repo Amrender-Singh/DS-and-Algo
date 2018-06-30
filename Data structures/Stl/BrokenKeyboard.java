@@ -47,31 +47,22 @@ class Reader{
         Reader sc =  new Reader();
         StringBuilder output = new StringBuilder();
         String s;
-        LinkedList<Character> first;
-        LinkedList<Character> last;
+        LinkedList<Character> list;
         while((s = sc.nextLine()) != null && s != ""){
-            first = new LinkedList<>();
-            last = new LinkedList<>();
-            boolean addLast = true;
+            list = new LinkedList<>();
+            int pointerLocation = 0;
             for(int i = 0 ; i < s.length(); i++){
                 if(s.charAt(i) == '[') {
-                    last.addAll(0, first);
-                    first.clear();
-                    addLast = false;
-                    continue;
+                    pointerLocation = 0;
                 }
-                if(s.charAt(i) ==  ']'){
-                    addLast = true;
-                    continue;
+                else if(s.charAt(i) ==  ']'){
+                    pointerLocation = list.size();
                 }
-                if(addLast)
-                    last.add(s.charAt(i));
                 else    
-                    first.add(s.charAt(i));
+                    list.add(pointerLocation++,s.charAt(i));
             }
             StringBuilder sb = new StringBuilder();
-            first.addAll(last);
-            for(Character c  : first){
+            for(Character c  : list){
                 sb.append(c);
             }
             output.append(sb.toString()+"\n");
