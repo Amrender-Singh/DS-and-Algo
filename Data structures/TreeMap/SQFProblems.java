@@ -1,3 +1,6 @@
+/**
+ * The execution time of this program on Uva was 0.110. Which is the top subsmission of this problem in java.
+ */
 import java.io.*;
 import java.util.*;
 import java.text.DecimalFormat;
