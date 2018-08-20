@@ -52,7 +52,7 @@ class RecipeMap{
 }
 public class BankruptBaker{
     
-    public static void readInputAndCreateMap(Reader sc, int m, int n, ArrayList<RecipeMap> recipesPriceMap){
+    public static void readInputAndCreateMap(Reader sc, int m, int n, int b, ArrayList<RecipeMap> recipesPriceMap){
         HashMap<String, Integer> ingredientPriceMap = new HashMap<>();
         while(m --> 0){
             ingredientPriceMap.put(sc.next().trim(), sc.nextInt());
@@ -67,7 +67,8 @@ public class BankruptBaker{
                 if(price != null)
                     cost += (price*units);
             }
-            recipesPriceMap.add(new RecipeMap(recipeName, cost));
+            if(cost <= b)
+                recipesPriceMap.add(new RecipeMap(recipeName, cost));
         }
     }
     public static void main(String[] args) {
@@ -81,22 +82,23 @@ public class BankruptBaker{
             int n = sc.nextInt();
             int b = sc.nextInt();
             output.append(binder.toUpperCase() + "\n");
-            boolean foundOne = false;
-            readInputAndCreateMap(sc, m, n, recipesPriceMap);
-            Collections.sort(recipesPriceMap, (x, y)->{
-                if(x.cost != y.cost)
-                    return x.cost - y.cost;
-                return x.recipeName.compareTo(y.recipeName);
-            });
-            for(RecipeMap r : recipesPriceMap){
-                if(r.cost > b){
-                    break;
-                } 
-                output.append(r.recipeName + "\n");
-                foundOne = true;
-            }
-            if(!foundOne)
+            readInputAndCreateMap(sc, m, n, b, recipesPriceMap);
+            if(recipesPriceMap.size() == 0){
                 output.append("Too expensive!\n");
+            } else{
+                Collections.sort(recipesPriceMap, (x, y)->{
+                    if(x.cost != y.cost)
+                        return x.cost - y.cost;
+                    return x.recipeName.compareTo(y.recipeName);
+                });
+                for(RecipeMap r : recipesPriceMap){
+                    if(r.cost > b){
+                        break;
+                    } 
+                    output.append(r.recipeName + "\n");
+                }
+            }
+            
             output.append("\n");
         }
         System.out.print(output.toString());
