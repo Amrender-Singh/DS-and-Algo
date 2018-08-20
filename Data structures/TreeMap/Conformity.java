@@ -42,14 +42,6 @@ class Reader{
         return str;
     }
 }
-class Project{
-    int count;
-    String name;
-    Project(String name, int count){
-        this.name = name;
-        this.count = count;
-    }
-}
 
 public class Conformity{
     
@@ -85,13 +77,14 @@ public class Conformity{
             readInputAndCreateMap(sc, map, Integer.parseInt(s));
             Integer maxValue = new Integer(-1);
             Integer total = new Integer(0);
-            ArrayList<Integer> list = new ArrayList<Integer>(map.values());
-            Collections.sort(list, Collections.reverseOrder());
-            for(Integer val : list){
-                if(maxValue != -1 && maxValue != val)
-                    break;
-                maxValue = val;
-                total += val;
+            for(Integer val : map.values()){
+                if(maxValue < val){
+                    maxValue = val;
+                    total = 0;
+                }
+                if(maxValue == val){
+                    total += val;
+                }
             }
             output.append(total + "\n");
         }
