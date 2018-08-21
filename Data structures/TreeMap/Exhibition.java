@@ -1,5 +1,11 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.StringTokenizer;
 
 class Reader{
     BufferedReader br;
@@ -81,14 +87,14 @@ public class Exhibition{
         while(i <= nofOfTestCases){
             LinkedHashMap<Integer, Integer> list = new LinkedHashMap<>();
             int noOfUniqueStamps = readInputAndCreateMap(sc, list);
-            System.out.print("Case "+ i + ":");
+            output.append("Case "+ i + ":");
             for(Map.Entry<Integer,Integer> entry : list.entrySet()){
                 double percentage = (double)(entry.getValue()*100)/noOfUniqueStamps;
-                System.out.printf(" %.6f",percentage);
-                System.out.print("%");
+				output.append(" "+String.format("%.6f%%",percentage));
             }
-            System.out.println();
+            output.append("\n");
             i++;
         }
+        System.out.print(output.toString());
     }
 }
