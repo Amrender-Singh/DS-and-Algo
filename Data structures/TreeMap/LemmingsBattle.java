@@ -57,13 +57,11 @@ public class LemmingsBattle{
             bwin = new ArrayList<>();
             n = B;
             while(n --> 0 && !gpq.isEmpty() && !bpq.isEmpty()){
-                if(gpq.peek() > bpq.peek())
-                    gwin.add((gpq.poll() - bpq.poll()));
-                else if(gpq.peek() < bpq.peek())
-                    bwin.add((bpq.poll() - gpq.poll()));
-                else{
-                    gpq.poll();  bpq.poll();
-                }
+                int a = gpq.poll(), b = bpq.poll();
+                if(a > b)
+                    gwin.add((a - b));
+                else if(a < b)
+                    bwin.add((b - a));
             }
             for(Integer i : gwin){
                 gpq.add(i);
