@@ -44,28 +44,31 @@ class Reader{
 }
 
 public class AndysFirstDictionary{
-    public static void readInput(Reader sc, TreeSet<String> set){
+    public static void readInput(Reader sc, PriorityQueue<String> dictionary){
         String s;
         StringBuilder word = new StringBuilder();
+        HashSet<String> set = new HashSet<>();
         while((s = sc.nextLine())!=null){
             for(int i = 0; i < s.length(); i++){
                 while(i < s.length() && Character.isLetter(s.charAt(i))){
                     word.append(Character.toLowerCase(s.charAt(i)));
                     i++;
                 }
-                if(word.length() > 0)
+                if(word.length() > 0 && !set.contains(word.toString())){
+                    dictionary.add(word.toString());
                     set.add(word.toString());
-                word.setLength(0);
+                }
+                word.dictionaryLength(0);
             }
         }
     }
     public static void main(String[] args) {
         Reader sc = new Reader();
         StringBuilder output = new StringBuilder();
-        TreeSet<String> set = new TreeSet<>();
-        readInput(sc, set);
-        while(!set.isEmpty()){
-            output.append(set.pollFirst() + "\n");
+        PriorityQueue<String> dictionary = new PriorityQueue<>();
+        readInput(sc, dictionary);
+        while(!dictionary.isEmpty()){
+            output.append(dictionary.poll() + "\n");
         }
         System.out.print(output.toString());
     }
