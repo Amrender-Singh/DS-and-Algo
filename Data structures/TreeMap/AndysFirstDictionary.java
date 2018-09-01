@@ -58,7 +58,7 @@ public class AndysFirstDictionary{
                     dictionary.add(word.toString());
                     set.add(word.toString());
                 }
-                word.dictionaryLength(0);
+                word.setLength(0);
             }
         }
     }
