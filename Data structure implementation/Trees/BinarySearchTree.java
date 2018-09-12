@@ -182,6 +182,16 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
         return keys;
     }
+    public boolean isBst(){
+        return isBst(root, null, null);
+    }
+    private boolean isBst(Node x, Key min, Key max){
+        if(x == null)
+            return true;
+        if((min != null && x.key.compareTo(min) <= 0) || (max != null && x.key.compareTo(max) >= 0))
+            return false;
+        return isBst(x.left, min, x.key) && isBst(x.right, x.key, max);
+    }
     public static void main(String[] args) {
         BinarySearchTree<Integer, Integer> st = new BinarySearchTree<Integer, Integer>();
         int arr[] = {100,664,1,4,67,34,21,90,68};
