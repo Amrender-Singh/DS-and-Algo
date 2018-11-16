@@ -44,7 +44,7 @@ public class Digraph {
     }
     public int indegree(int v){
         validateVertex(v);
-        return indegree(v);
+        return indegree[v];
     }
     public Digraph reverse(){
         Digraph reverse = new Digraph(V);
